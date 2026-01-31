@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>dictate.sh — Editorial</title>
+    <meta
+      name="description"
+      content="Editorial landing page for dictate.sh: local ASR, VAD turns, and optional intent analysis."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Work+Sans:wght@300;400;500&family=Source+Code+Pro:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #121417;
+        --muted: #4b525b;
+        --paper: #fbf7f2;
+        --accent: #b24b2a;
+        --accent-hover: #9a3f22;
+        --line: rgba(18, 20, 23, 0.12);
+        --shadow-sm: 0 2px 8px rgba(18, 20, 23, 0.06);
+        --shadow-md: 0 4px 16px rgba(18, 20, 23, 0.1);
+        --shadow-lg: 0 8px 32px rgba(18, 20, 23, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Work Sans", system-ui, sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .page {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 32px 24px 90px;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.7rem;
+        transition: opacity 0.2s ease;
+      }
+
+      .logo:hover {
+        opacity: 0.7;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 20px;
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      .hero {
+        margin-top: 80px;
+        text-align: center;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        border-top: none;
+        padding-top: 0;
+      }
+
+      .hero-terminal {
+        margin-top: 56px;
+      }
+
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.6rem, 4.8vw, 4.2rem);
+        margin: 0 0 24px;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+
+      .hero p {
+        margin: 0 auto 28px;
+        font-size: 1.1rem;
+        color: var(--muted);
+        line-height: 1.7;
+        max-width: 540px;
+      }
+
+      .btns {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .btn {
+        border: 1px solid var(--ink);
+        padding: 10px 18px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .btn.primary {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .btn.primary:hover {
+        background: #2a2d33;
+        box-shadow: var(--shadow-md);
+      }
+
+      .terminal {
+        background: linear-gradient(180deg, #1a1d21 0%, #121417 100%);
+        color: #f7f3ee;
+        border-radius: 12px;
+        padding: 18px;
+        font-family: "Source Code Pro", ui-monospace, monospace;
+        font-size: 0.88rem;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        line-height: 1.7;
+        overflow-x: auto;
+      }
+
+      .terminal-window {
+        background: linear-gradient(180deg, #1a1d21 0%, #121417 100%);
+        border-radius: 12px;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        overflow: hidden;
+      }
+
+      .terminal-header {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 10px 14px;
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      .terminal-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .terminal-dot.red { background: #ff5f57; }
+      .terminal-dot.yellow { background: #febc2e; }
+      .terminal-dot.green { background: #28c840; }
+
+      .terminal-window .terminal {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 14px 18px 18px;
+      }
+
+      section {
+        margin-top: 100px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+      }
+
+      .section-title {
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-size: 0.72rem;
+        font-weight: 500;
+        display: inline-block;
+        padding: 6px 0;
+        border-bottom: 2px solid var(--accent);
+        margin-bottom: 8px;
+      }
+
+      h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 3.2vw, 3.2rem);
+        margin: 12px 0 24px;
+        line-height: 1.2;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 24px;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 22px;
+        background: white;
+        box-shadow: var(--shadow-sm);
+        transition: all 0.25s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+        border-color: transparent;
+      }
+
+      .card h3 {
+        margin: 0 0 10px;
+        font-size: 1.05rem;
+        font-weight: 600;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      footer {
+        margin-top: 80px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      footer span:last-child {
+        background: rgba(178, 75, 42, 0.1);
+        color: var(--accent);
+        padding: 4px 12px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+      }
+
+      ::selection {
+        background: var(--accent);
+        color: var(--paper);
+      }
+
+      @media (max-width: 720px) {
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <nav>
+        <a href="#" class="logo">dictate.sh</a>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#usage">Usage</a>
+          <a href="https://github.com/mpuig/dictate.sh">GitHub</a>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <h1>Local transcription with editorial clarity.</h1>
+        <p>
+          dictate.sh keeps speech workflows on-device. MLX delivers low-latency
+          ASR, VAD finalizes turns, and a local LLM can extract intent when you
+          need structure.
+        </p>
+        <div class="btns">
+          <a class="btn primary" href="#features">Features</a>
+          <a class="btn" href="https://github.com/mpuig/dictate.sh">View source</a>
+        </div>
+      </section>
+
+      <div class="hero-terminal">
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+          </div>
+          <div class="terminal">
+            <span style="color: #6b7280;">$</span> uv run https://raw.githubusercontent.com/mpuig/dictate.sh/main/qwen3.py --analyze<br /><br />
+            <span style="color: #10b981;">INFO:</span> Ready<br />
+            <span style="color: #6b7280;">&gt;</span> Keep it on-device.<br />
+            <span style="color: #f59e0b;">Intent:</span> ACTION<br />
+            <span style="color: #f59e0b;">Entities:</span> "local inference"
+          </div>
+        </div>
+      </div>
+
+      <section id="features">
+        <div class="section-title">Features</div>
+        <h2>Everything you need, nothing you don't.</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>MLX ASR</h3>
+            <p>Fast, local transcription on Apple Silicon.</p>
+          </div>
+          <div class="card">
+            <h3>VAD turns</h3>
+            <p>Finalize on silence, not arbitrary intervals.</p>
+          </div>
+          <div class="card">
+            <h3>Intent analysis</h3>
+            <p>Optional on-device LLM for structure and routing.</p>
+          </div>
+          <div class="card">
+            <h3>Clean output</h3>
+            <p>UI on stderr, stdout for scripting.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="usage">
+        <div class="section-title">Usage</div>
+        <h2>Configuration options.</h2>
+        <div class="grid">
+          <div class="card">
+            <div class="terminal">
+              $ uv run qwen3.py<br /><br />
+              $ uv run qwen3.py --analyze<br /><br />
+              $ uv run qwen3.py --model mlx-community/Qwen3-ASR-1.7B-8bit<br /><br />
+              $ uv run qwen3.py --vad-mode 0 --vad-silence-ms 1200 --min-words 6
+            </div>
+          </div>
+          <div class="card">
+            <h3>Dial in the feel</h3>
+            <p>
+              Increase <strong>--vad-silence-ms</strong> to avoid short turns or
+              lower <strong>--vad-mode</strong> for less aggressive detection.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <span>dictate.sh · MIT</span>
+        <span>Apple Silicon only</span>
+      </footer>
+    </div>
+  </body>
+</html>
